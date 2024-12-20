@@ -9,13 +9,13 @@ inputs:
     description: "Dry run"
     required: true
   no-npm:
-    description: "Skip push to npm"
+    description: "Skip releasing it to npm"
     required: true
   git-user:
-    description: Required Github User Name
+    description: Github username
     required: true
   git-email:
-    description: Required Github User Email
+    description: Github email
     required: true
 
 outputs:
