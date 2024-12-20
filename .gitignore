@@ -39,16 +39,3 @@ lerna-debug.log*
 
 # DEV FILES
 __dev
-
-# playwright test reports and cache
-test-report/
-test-results/
-playwright-report/
-playwright/.cache/
-
-.npmrc
-
-# unit test coverage & execution reports
-unit-test/
-load-test/reports/me.json
-load-test/*.html
