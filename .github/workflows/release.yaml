@@ -20,10 +20,6 @@ on:
         description: "Skip push to npm"
         required: true
         default: false
-      slack-channel:
-        description: "Define slack channel for sending release notification"
-        required: true
-        default: "C049E9371KP" # codemask-new-datasense
 
 permissions:
   contents: write
