@@ -1,4 +1,4 @@
-name: Release It
+name: Release it
 description: Release it Composite Github Action
 
 inputs:
@@ -8,26 +8,26 @@ inputs:
   dry-run:
     description: "Dry run"
     required: false
-    default: false
+    default: "false"
   no-npm:
     description: "Skip releasing it to npm"
     required: false
-    default: false
+    default: "false"
   no-git:
     description: "Skip releasing it to Github"
     required: false
-    default: false
+    default: "false"
   manual-version:
-    description: "Manual version of releasefor example 1.0.0"
+    description: "Sets explicit version for the release. For example: 1.0.0"
     required: false
   git-user:
-    description: Github username
+    description: "Github username"
     required: true
   git-email:
-    description: Github email
+    description: "Github email"
     required: true
   git-token:
-    description: Github token to push release
+    description: "Github token to push release"
     required: true
 
 outputs:
