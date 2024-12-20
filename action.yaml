@@ -1,0 +1,59 @@
+name: Release It
+description: Release it Composite Github Action
+
+inputs:
+  release-branch:
+    description: Which branch you would like to release
+    default: main
+  dry-run:
+    description: "Dry run"
+    required: true
+  no-npm:
+    description: "Skip releasing it to npm"
+    required: true
+  git-user:
+    description: Github username
+    required: true
+  git-email:
+    description: Github email
+    required: true
+
+outputs:
+  version:
+    description: "Version of successful release"
+    value: ${{ steps.release-it.outputs.version }}
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4.1.6
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node
+      uses: actions/setup-node@v4.1.0
+      with:
+        node-version: lts/*
+
+    - name: Init Git user
+      shell: bash
+      run: |
+        git config --global user.email "${{ inputs.git-user }}"
+        git config --global user.name "${{ inputs.git-user }}"
+
+    - name: Release
+      shell: bash
+      id: release-it
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        dry_run=""
+        pre_release=""
+        no_npm=""
+
+        if [ "${{ inputs.dry-run }}" == "true" ]; then dry_run="--dry-run"; fi
+        if [ "${{ inputs.release-branch }}" != "main" ]; then pre_release="--preRelease=${{ inputs.release-branch }}"; fi
+        if [ "${{ inputs.no-npm }}" == "true" ]; then no_npm="--no-npm"; fi
+
+        yarn release-it --ci $pre_release $dry_run $no_npm
