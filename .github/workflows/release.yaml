@@ -42,6 +42,7 @@ jobs:
         with:
           git-user: "Codemask Labs"
           git-email: "contact@codemask.com"
+          git-token: ${{ secrets.GITHUB_TOKEN }}
           release-branch: ${{ inputs.release-branch }}
           dry-run: ${{ inputs.dry-run }}
           no-npm: ${{ inputs.no-npm }}
