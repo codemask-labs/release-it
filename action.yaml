@@ -7,10 +7,16 @@ inputs:
     default: main
   dry-run:
     description: "Dry run"
-    required: true
+    required: false
+    default: false
   no-npm:
     description: "Skip releasing it to npm"
-    required: true
+    required: false
+    default: false
+  no-git:
+    description: "Skip releasing it to Github"
+    required: false
+    default: false
   manual-version:
     description: "Manual version of releasefor example 1.0.0"
     required: false
@@ -58,10 +64,12 @@ runs:
         pre_release=""
         no_npm=""
         manual_version=""
+        no_git=""
 
         if [ "${{ inputs.dry-run }}" == "true" ]; then dry_run="--dry-run"; fi
         if [ "${{ inputs.release-branch }}" != "main" ]; then pre_release="--preRelease=${{ inputs.release-branch }}"; fi
         if [ "${{ inputs.no-npm }}" == "true" ]; then no_npm="--no-npm"; fi
         if [ "${{ inputs.manual-version }}" != "" ]; then manual_version="\"${{ inputs.manual-version }}\""; fi
+        if [ "${{ inputs.no-git }}" == "true" ]; then no_git="--no-git"; fi
 
-        npx release-it $manual_version --ci $pre_release $dry_run $no_npm
+        npx release-it $manual_version --ci $pre_release $dry_run $no_npm $no_git
