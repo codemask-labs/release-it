@@ -33,4 +33,15 @@ jobs:
     timeout-minutes: 5
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.6
+        with:
+          fetch-depth: 0
+
       - uses: ./
+        with:
+          git-user: "Codemask Labs"
+          git-email: "contact@codemask.com"
+          release-branch: ${{ inputs.release-branch }}
+          dry-run: ${{ inputs.dry-run }}
+          no-npm: ${{ inputs.no-npm }}
