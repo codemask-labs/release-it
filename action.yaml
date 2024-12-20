@@ -20,6 +20,9 @@ inputs:
   git-email:
     description: Github email
     required: true
+  git-token:
+    description: Github token to push release
+    required: true
 
 outputs:
   version:
@@ -49,7 +52,7 @@ runs:
       shell: bash
       id: release-it
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.git-token }}
       run: |
         dry_run=""
         pre_release=""
