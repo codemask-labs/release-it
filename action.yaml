@@ -11,6 +11,9 @@ inputs:
   no-npm:
     description: "Skip releasing it to npm"
     required: true
+  manual-version:
+    description: "Manual version of releasefor example 1.0.0"
+    required: false
   git-user:
     description: Github username
     required: true
@@ -51,9 +54,11 @@ runs:
         dry_run=""
         pre_release=""
         no_npm=""
+        manual_version=""
 
         if [ "${{ inputs.dry-run }}" == "true" ]; then dry_run="--dry-run"; fi
         if [ "${{ inputs.release-branch }}" != "main" ]; then pre_release="--preRelease=${{ inputs.release-branch }}"; fi
         if [ "${{ inputs.no-npm }}" == "true" ]; then no_npm="--no-npm"; fi
+        if [ "${{ inputs.manual-version }}" != "" ]; then manual_version="\"${{ inputs.manual-version }}\""; fi
 
-        yarn release-it --ci $pre_release $dry_run $no_npm
+        npx release-it $manual_version --ci $pre_release $dry_run $no_npm
