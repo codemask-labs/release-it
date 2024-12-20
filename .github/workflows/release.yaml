@@ -1,0 +1,40 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      release-branch:
+        type: choice
+        description: To which branch you want to release
+        default: main
+        options:
+          - main
+          - beta
+          - rc
+      dry-run:
+        type: boolean
+        description: "Dry run"
+        required: true
+        default: true
+      no-npm:
+        type: boolean
+        description: "Skip push to npm"
+        required: true
+        default: false
+      slack-channel:
+        description: "Define slack channel for sending release notification"
+        required: true
+        default: "C049E9371KP" # codemask-new-datasense
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu
+    timeout-minutes: 5
+
+    steps:
+      - uses: ./
