@@ -69,7 +69,7 @@ runs:
         if [ "${{ inputs.dry-run }}" == "true" ]; then dry_run="--dry-run"; fi
         if [ "${{ inputs.release-branch }}" != "main" ]; then pre_release="--preRelease=${{ inputs.release-branch }}"; fi
         if [ "${{ inputs.no-npm }}" == "true" ]; then no_npm="--no-npm"; fi
-        if [ "${{ inputs.manual-version }}" != "" ]; then manual_version="\"${{ inputs.manual-version }}\""; fi
+        if [ "${{ inputs.manual-version }}" != "" ]; then manual_version="${{ inputs.manual-version }}"; fi
         if [ "${{ inputs.no-git }}" == "true" ]; then no_git="--no-git"; fi
 
         npx release-it $manual_version --ci $pre_release $dry_run $no_npm $no_git
