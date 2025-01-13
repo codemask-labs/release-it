@@ -10,6 +10,17 @@
     "requireBranch": "main",
     "tagName": "v${version}",
     "commitMessage": "chore(release): ${version}",
-    "tagAnnotation": "Release ${version}"
+    "tagAnnotation": "v${version}"
+  },
+  "hooks": {
+    "after:release": "echo \"version=${version}\" >> $GITHUB_OUTPUT"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "infile": "CHANGELOG.md",
+      "preset": {
+        "name": "conventionalcommits"
+      }
+    }
   }
 }
