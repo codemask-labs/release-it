@@ -48,7 +48,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run Release it Action
-        uses: codemask-labs/release-it-action@v1
+        uses: codemask-labs/release-it@v1
         with:
           git-user: "your-username"
           git-email: "your-email@example.com"
