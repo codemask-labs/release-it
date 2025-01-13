@@ -47,6 +47,7 @@ runs:
       uses: actions/setup-node@v4.1.0
       with:
         node-version: lts/*
+        cache: 'npm'
 
     - name: Init Git user
       shell: bash
@@ -54,22 +55,46 @@ runs:
         git config --global user.email "${{ inputs.git-user }}"
         git config --global user.name "${{ inputs.git-user }}"
 
-    - name: Release
+    - name: Install Dependencies
       shell: bash
+      run: npm install -g @release-it/conventional-changelog release-it
+
+    - name: Release
       id: release-it
       env:
         GITHUB_TOKEN: ${{ inputs.git-token }}
+      shell: bash
       run: |
-        dry_run=""
-        pre_release=""
-        no_npm=""
-        manual_version=""
-        no_git=""
+        # Handle manual version input
+        if [ ! -z "${{ inputs.manual-version }}" ]; then
+        flags+=("${{ inputs.manual-version }}")
+        fi
 
-        if [ "${{ inputs.dry-run }}" == "true" ]; then dry_run="--dry-run"; fi
-        if [ "${{ inputs.release-branch }}" != "main" ]; then pre_release="--preRelease=${{ inputs.release-branch }}"; fi
-        if [ "${{ inputs.no-npm }}" == "true" ]; then no_npm="--no-npm"; fi
-        if [ "${{ inputs.manual-version }}" != "" ]; then manual_version="${{ inputs.manual-version }}"; fi
-        if [ "${{ inputs.no-git }}" == "true" ]; then no_git="--no-git"; fi
+        # Added configuration for release-it
+        flags=("--ci")
 
-        npx release-it $manual_version --ci $pre_release $dry_run $no_npm $no_git
+        # Handle dry-run flag
+        if [ "${{ inputs.dry-run }}" == "true" ]; then
+          flags+=("--dry-run")
+        fi
+        
+        # Handle no-npm flag
+        if [ "${{ inputs.no-npm }}" == "true" ]; then
+          flags+=("--no-npm")
+        fi
+        
+        # Handle no-git flag
+        if [ "${{ inputs.no-git }}" == "true" ]; then
+          flags+=("--no-git")
+        fi
+
+        # Handle pre-release based on branch (if not main)
+        if [ "${{ inputs.release-branch }}" != "main" ]; then
+          flags+=("--preRelease=${{ inputs.release-branch }}")
+        fi
+
+        # Print the full command to the CI log
+        echo "Running: release-it ${flags[*]}"
+
+        # Execute release-it with constructed flags
+        release-it "${flags[@]}"
