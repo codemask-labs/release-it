@@ -38,11 +38,6 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: Checkout
-      uses: actions/checkout@v4.2.2
-      with:
-        fetch-depth: 0
-
     - name: Setup Node
       uses: actions/setup-node@v4.1.0
       with:
@@ -64,24 +59,18 @@ runs:
         GITHUB_TOKEN: ${{ inputs.git-token }}
       shell: bash
       run: |
-        # Handle manual version input
-        if [ ! -z "${{ inputs.manual-version }}" ]; then
-        flags+=("${{ inputs.manual-version }}")
-        fi
-
-        # Added configuration for release-it
         flags=("--ci")
 
         # Handle dry-run flag
         if [ "${{ inputs.dry-run }}" == "true" ]; then
           flags+=("--dry-run")
         fi
-        
+
         # Handle no-npm flag
         if [ "${{ inputs.no-npm }}" == "true" ]; then
           flags+=("--no-npm")
         fi
-        
+
         # Handle no-git flag
         if [ "${{ inputs.no-git }}" == "true" ]; then
           flags+=("--no-git")
@@ -90,6 +79,11 @@ runs:
         # Handle pre-release based on branch (if not main)
         if [ "${{ inputs.release-branch }}" != "main" ]; then
           flags+=("--preRelease=${{ inputs.release-branch }}")
+        fi
+
+        # Handle manual version input
+        if [ ! -z "${{ inputs.manual-version }}" ]; then
+          flags+=("${{ inputs.manual-version }}")
         fi
 
         # Print the full command to the CI log
