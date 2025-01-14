@@ -59,7 +59,7 @@ runs:
         GITHUB_TOKEN: ${{ inputs.git-token }}
       shell: bash
       run: |
-        flags=("")
+        flags=("--ci")
 
         # Handle dry-run flag
         if [ "${{ inputs.dry-run }}" == "true" ]; then
@@ -90,4 +90,4 @@ runs:
         echo "Running: release-it ${flags[*]}"
 
         # Execute release-it with constructed flags
-        release-it --ci "${flags[@]}"
+        release-it "${flags[@]}"
