@@ -83,7 +83,7 @@ runs:
 
         # Handle manual version input
         if [ ! -z "${{ inputs.manual-version }}" ]; then
-        flags+=("${{ inputs.manual-version }}")
+          flags+=("${{ inputs.manual-version }}")
         fi
 
         # Print the full command to the CI log
