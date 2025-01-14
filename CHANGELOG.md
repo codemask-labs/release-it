@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1](https://github.com/codemask-labs/release-it/compare/v1.1.0...v1.1.1) (2025-01-14)
+
+### Bug Fixes
+
+* release checkout ([9ea8b68](https://github.com/codemask-labs/release-it/commit/9ea8b686bf537e05dd99ae72b3c9fa5ba7dc95bf))
+
 ## [1.1.0](https://github.com/codemask-labs/release-it-action/compare/v1.1.0-beta.0...v1.1.0) (2025-01-13)
 
 ## [1.1.0-beta.0](https://github.com/codemask-labs/release-it-action/compare/v1.0.1...v1.1.0-beta.0) (2025-01-13)
