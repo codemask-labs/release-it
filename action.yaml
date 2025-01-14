@@ -59,13 +59,7 @@ runs:
         GITHUB_TOKEN: ${{ inputs.git-token }}
       shell: bash
       run: |
-        # Handle manual version input
-        if [ ! -z "${{ inputs.manual-version }}" ]; then
-        flags+=("${{ inputs.manual-version }}")
-        fi
-
-        # Added configuration for release-it
-        flags=("--ci")
+        flags=("")
 
         # Handle dry-run flag
         if [ "${{ inputs.dry-run }}" == "true" ]; then
@@ -87,8 +81,13 @@ runs:
           flags+=("--preRelease=${{ inputs.release-branch }}")
         fi
 
+        # Handle manual version input
+        if [ ! -z "${{ inputs.manual-version }}" ]; then
+        flags+=("${{ inputs.manual-version }}")
+        fi
+
         # Print the full command to the CI log
         echo "Running: release-it ${flags[*]}"
 
         # Execute release-it with constructed flags
-        release-it "${flags[@]}"
+        release-it --ci "${flags[@]}"
