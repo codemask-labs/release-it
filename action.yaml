@@ -38,11 +38,6 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: Checkout
-      uses: actions/checkout@v4.2.2
-      with:
-        fetch-depth: 0
-
     - name: Setup Node
       uses: actions/setup-node@v4.1.0
       with:
@@ -76,12 +71,12 @@ runs:
         if [ "${{ inputs.dry-run }}" == "true" ]; then
           flags+=("--dry-run")
         fi
-        
+
         # Handle no-npm flag
         if [ "${{ inputs.no-npm }}" == "true" ]; then
           flags+=("--no-npm")
         fi
-        
+
         # Handle no-git flag
         if [ "${{ inputs.no-git }}" == "true" ]; then
           flags+=("--no-git")
