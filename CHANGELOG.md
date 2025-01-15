@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.2](https://github.com/codemask-labs/release-it/compare/v1.1.1...v1.1.2) (2025-01-15)
+
+### Bug Fixes
+
+* npm release branch ([7a8b9d8](https://github.com/codemask-labs/release-it/commit/7a8b9d8822e5b0c42a323c34abd6555acc9c1ac1))
+
 ## [1.1.1](https://github.com/codemask-labs/release-it/compare/v1.1.0...v1.1.1) (2025-01-14)
 
 ### Bug Fixes
