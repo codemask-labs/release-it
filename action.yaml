@@ -78,6 +78,7 @@ runs:
 
         # Handle pre-release based on branch (if not main)
         if [ "${{ inputs.release-branch }}" != "main" ]; then
+          flags+=("--npm.tag=${{ inputs.release-branch }}")
           flags+=("--preRelease=${{ inputs.release-branch }}")
         fi
 
