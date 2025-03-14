@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.2.0](https://github.com/codemask-labs/release-it/compare/v1.1.2...v1.2.0) (2025-03-14)
+
+### Features
+
+* github release name ([6ca9390](https://github.com/codemask-labs/release-it/commit/6ca9390596b6d79b74a8b3deb23882faeee3d484))
+* no-npm on release workflow ([0429be7](https://github.com/codemask-labs/release-it/commit/0429be770b736ec3a5b4874a4b09986163dcd41a))
+
+### Bug Fixes
+
+* git config email ([88896ba](https://github.com/codemask-labs/release-it/commit/88896ba791ef25543b124330556f0d1d70c92abd))
+
 ## [1.1.2](https://github.com/codemask-labs/release-it/compare/v1.1.1...v1.1.2) (2025-01-15)
 
 ### Bug Fixes
