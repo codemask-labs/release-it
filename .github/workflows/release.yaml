@@ -33,7 +33,6 @@ jobs:
 
       - uses: ./
         with:
-          no-npm: "true"
           git-user: "Codemask Labs"
           git-email: "contact@codemask.com"
           git-token: ${{ secrets.GITHUB_TOKEN }}
