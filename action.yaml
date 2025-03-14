@@ -46,7 +46,7 @@ runs:
     - name: Init Git user
       shell: bash
       run: |
-        git config --global user.email "${{ inputs.git-user }}"
+        git config --global user.email "${{ inputs.git-email }}"
         git config --global user.name "${{ inputs.git-user }}"
 
     - name: Install Dependencies
