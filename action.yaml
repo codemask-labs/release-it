@@ -51,7 +51,7 @@ runs:
 
     - name: Install Dependencies
       shell: bash
-      run: npm install -g @release-it/conventional-changelog release-it
+      run: npm install -g @release-it/conventional-changelog release-it --ignore-scripts
 
     - name: Release
       id: release-it

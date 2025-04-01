@@ -1,27 +1,49 @@
 {
-  "github": {
-    "release": true,
-    "releaseName": "v${version}"
-  },
-  "npm": {
-    "publish": false
-  },
-  "git": {
-    "requireCleanWorkingDir": true,
-    "requireBranch": "main",
-    "tagName": "v${version}",
-    "commitMessage": "chore(release): ${version}",
-    "tagAnnotation": "v${version}"
-  },
-  "hooks": {
-    "after:release": "echo \"version=${version}\" >> $GITHUB_OUTPUT"
-  },
-  "plugins": {
-    "@release-it/conventional-changelog": {
-      "infile": "CHANGELOG.md",
-      "preset": {
-        "name": "conventionalcommits"
-      }
+    "github": {
+        "release": true,
+        "releaseName": "v${version}"
+    },
+    "npm": {
+        "publish": false
+    },
+    "git": {
+        "requireCleanWorkingDir": true,
+        "requireBranch": "main",
+        "tagName": "v${version}",
+        "commitMessage": "chore(release): ${version}",
+        "tagAnnotation": "v${version}"
+    },
+    "hooks": {
+        "after:release": "echo \"version=${version}\" >> $GITHUB_OUTPUT"
+    },
+    "plugins": {
+        "@release-it/conventional-changelog": {
+            "infile": "CHANGELOG.md",
+            "preset": {
+                "name": "conventionalcommits",
+                "types": [
+                    {
+                        "type": "feat",
+                        "section": "Features"
+                    },
+                    {
+                        "type": "fix",
+                        "section": "Bug Fixes"
+                    },
+                    {
+                        "type": "build",
+                        "section": "Build items"
+                    },
+                    {
+                        "type": "ci",
+                        "section": "CI/CD"
+                    },
+                    {
+                        "type": "revert",
+                        "section": "Reverted"
+                    }
+                ]
+            }
+        }
     }
-  }
 }
